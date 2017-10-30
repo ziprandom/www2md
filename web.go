@@ -1,14 +1,14 @@
 package main
 
 import (
-  "github.com/yhat/scrape"
+	"github.com/yhat/scrape"
 	"golang.org/x/net/html"
 	"golang.org/x/net/html/atom"
 
-	"net/url"
-	"net/http"
-	"strings"
 	"bytes"
+	"net/http"
+	"net/url"
+	"strings"
 )
 
 // factory to create the scrape.Matcher callback
@@ -34,7 +34,7 @@ func visitLocalLinks(base url.URL, links *[]url.URL) scrape.Matcher {
 						// save links in array
 						*links = append(*links, *link)
 						// set link attribute to markdown link
-            name, path := urlToMarkdownUri(base, *link)
+						name, path := urlToMarkdownUri(base, *link)
 						n.Attr[i].Val = path + name
 					}
 				}
@@ -45,17 +45,17 @@ func visitLocalLinks(base url.URL, links *[]url.URL) scrape.Matcher {
 }
 
 type NetGetter interface {
-  Get(string) (*http.Response, error)
+	Get(string) (*http.Response, error)
 }
 
 // abstract away the http.Get
 // Method to enable testing
-type RealNetGetter struct {}
+type RealNetGetter struct{}
 
 // uses net/http and
 // implements the interface
 func (n RealNetGetter) Get(url string) (*http.Response, error) {
-  return http.Get(url)
+	return http.Get(url)
 }
 
 // retrieve the local url uri under the url base,
@@ -63,11 +63,11 @@ func (n RealNetGetter) Get(url string) (*http.Response, error) {
 // pages and update the links to point to the
 // local markdown files that will be created later
 func getLink(base, uri url.URL, netGetter NetGetter) (*[]url.URL, string, error) {
-  if netGetter == nil {
-    netGetter = RealNetGetter{}
-  }
+	if netGetter == nil {
+		netGetter = RealNetGetter{}
+	}
 	resp, err :=
-    netGetter.Get(uri.String())
+		netGetter.Get(uri.String())
 
 	var links []url.URL
 

@@ -7,29 +7,30 @@ import (
 	"strings"
 
 	"github.com/lunny/html2md"
-
 )
 
 // convert a web url to the local markdown url
 func urlToMarkdownUri(base url.URL, uri url.URL) (name string, path string) {
 	relUrl := strings.TrimSuffix(strings.TrimPrefix(uri.Path, base.Path), "/")
-  orig_name := "";
+	orig_name := ""
 	if matches := regexp.MustCompile(`[^\/]([\w\d-_]+(\.[\w]+)?)?$`).FindAllString(relUrl, -1); len(matches) > 0 {
-    orig_name = matches[0];
+		orig_name = matches[0]
 
-    if len(orig_name) > 0 && orig_name != "/" {
-      name = strings.Split(orig_name, ".")[0] + ".md"
-    }
+		if len(orig_name) > 0 && orig_name != "/" {
+			name = strings.Split(orig_name, ".")[0] + ".md"
+		}
 
-  }
+	}
 
-  if name == "" {
-    name = "index.md"
+	if name == "" {
+		name = "index.md"
 	}
 
 	path = strings.TrimSuffix(relUrl, orig_name)
 
-  if len(path) == 0 { path = "/" }
+	if len(path) == 0 {
+		path = "/"
+	}
 
 	return
 }
