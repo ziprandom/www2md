@@ -7,7 +7,7 @@ Usage
 =====
 
 ```
-usage: web_to_md <root_url> <storage_directory>
+usage: www2md <root_url> <storage_directory>
 ```
 
 recursively scrapes the `root_url` for any link that leads further down, gets it and saves the body as a markdown file in a file hierarchy under `storage_directory` that can be used as a basis for the `content` folder of a [hugo](https://gohugo.io) project.
