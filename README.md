@@ -16,6 +16,6 @@ recursively scrapes the `root_url` for any link that leads further down, gets it
 Notes
 =====
 
-* `go list -f '{{ .Imports }}'` vs. `go list -f '{{ .TestImports }}'` gives me confidence that I cant import whatever I want during testing without cluttering the final binary. [This](https://dave.cheney.net/2014/09/14/go-list-your-swiss-army-knife) shows you more nice things you can do with `go list`.
+* `go list -f '{{ .Imports }}'` vs. `go list -f '{{ .TestImports }}'` gives me confidence that I can import whatever I want during testing without cluttering the final binary. [This](https://dave.cheney.net/2014/09/14/go-list-your-swiss-army-knife) shows you more nice things you can do with `go list`.
 
 * `Interfaces` is a very interesting and ergonomic approach to abstractions. It was used mainly to ease the task of testing.
